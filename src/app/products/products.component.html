@@ -1,7 +1,18 @@
 <h1>Products</h1>
 
-<ul>
-  <li *ngFor="let item of products">
-    <app-product [product]="item"></app-product>
-  </li>
-</ul>
+<div class="container">
+  <div class="row top-buffer" *ngFor="let item of rows">
+    <div class="col-md">
+        <app-product [product]="item[0]"></app-product>
+    </div>
+    <div class="col-md">
+        <app-product [product]="item[1]"></app-product>
+    </div>
+    <div class="col-md">
+        <app-product [product]="item[2]"></app-product>
+    </div>
+    <div class="col-md">
+        <app-product [product]="item[3]"></app-product>
+    </div>
+  </div>
+</div>

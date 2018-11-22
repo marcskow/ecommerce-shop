@@ -3,8 +3,7 @@ import { Product } from './product.model';
 
 @Component({
   selector: 'app-product',
-  templateUrl: './product.component.html',
-  styles: []
+  templateUrl: './product.component.html'
 })
 export class ProductComponent implements OnInit {
 
