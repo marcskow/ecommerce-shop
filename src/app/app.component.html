@@ -1,9 +1,38 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-</div>
-<h2>Here are some links to help you start: </h2>
-<app-products></app-products>
+  <nav class="navbar navbar-dark navbar-expand-md fixed-top">
+    <a href="#" class="navbar-brand abs">ZPW</a>
+    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <!-- <ul class="nav navbar-nav">
+            <li class="nav navbar-nav">
+                <span class="fa fa-home"></span>
+            </li>
+        </ul> -->
+        <ul class="nav navbar-nav ml-auto" id="navScrollspy">
+            <li class="navbar-left">
+                <a class="nav-link" href="#top">Do góry</a>
+            </li>
+            <li class="navbar-left">
+                <a class="nav-link" href="#description">O nas</a>
+            </li>
+            <li class="navbar-left">
+                <a class="nav-link" href="#">Portfolio</a>
+            </li>
+            <li class="navbar-left">
+                <a class="nav-link" href="#">Usługi</a>
+            </li>
+            <li class="navbar-left">
+                <a class="nav-link" href="#">Ceny</a>
+            </li>
+            <nav class="navbar-right">
+              <button class="btn btn-success" type="button"  style="margin-left: 20px;">
+                <span class="fa fa-shopping-cart"></span> Shopping Cart
+              </button>
+            </nav>
+        </ul>
+    </div>
+</nav>
 
+<app-products></app-products>

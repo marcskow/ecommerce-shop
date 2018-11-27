@@ -1,19 +1,25 @@
 <h1>Products</h1>
 
 <div class="container">
-  <div class="row top-buffer" *ngFor="let product of products">
+  <div class="row top-buffer" *ngFor="let row of products">
     <div class="col-md">
-        <app-product [product]="product[0]"></app-product>
+        <app-product *ngIf="row?.length > 0" [product]="row[0]"></app-product>
     </div>
     <div class="col-md">
-        <app-product [product]="product[1]"></app-product>
+        <app-product *ngIf="row?.length > 1" [product]="row[1]"></app-product>
     </div>
     <div class="col-md">
-        <app-product [product]="product[2]"></app-product>
+        <app-product *ngIf="row?.length > 2" [product]="row[2]"></app-product>
     </div>
     <div class="col-md">
-        <app-product [product]="product[3]"></app-product>
+        <app-product *ngIf="row?.length > 3" [product]="row[3]"></app-product>
     </div>
   </div>
-  <button class="btn" (click)="showMore()">View More</button>
+  <button *ngIf="show" class="btn" (click)="showMore()">View More</button>
 </div>
+
+<!-- <div class="row top-buffer" *ngFor="let productsRow of products">
+    <div class="col-md" *ngFor="let product of productsRow">
+        <app-product [product]="product"></app-product>
+    </div>
+</div> -->

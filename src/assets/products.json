@@ -1,0 +1,11 @@
+[
+    { "name": "Samsung Galaxy s8", "amount": 10, "description": "Smartphone for everyone.", "price":  3000, "avatar": "https://www.jbhifi.com.au/FileLibrary/ProductResources/Images/210671-L-LO.jpg" },
+    { "name": "iPhone X", "amount": 15, "description": "Ugly phone bleh.", "price": 4000, "avatar": "https://switch.com.my/wp-content/uploads/2017/11/iphonex_spacegray-600x600.png"},
+    { "name": "LG g7", "amount": 7, "description": "Anyone still buying this one?", "price": 2000, "avatar": "https://image.coolblue.be/422x390/products/1030988"},
+    { "name": "Xiaomi Pocophone F1", "amount": 10, "description": "Graphite Black is one of a kind.", "price": 3000, "avatar": "https://cdn.x-kom.pl/i/setup/images/prod/big/product-medium,xiaomi-pocophone-f1-664-gb-graphite-black-446183,2018/8/pr_2018_8_25_10_8_43_401_00.jpg"},
+    { "name": "Nokia 6.1", "amount": 15, "description": "Microsoft child.", "price": 1300, "avatar": "https://www.91-img.com/pictures/123551-v7-nokia-6-2018-mobile-phone-large-1.jpg"},
+    { "name": "HTC U Ultra 4", "amount": 7, "description": "This is description.", "price": 1900, "avatar": "https://a.allegroimg.com/original/0cfcc4/bc548ec3445ba1a71cf99339cc5a"},
+    { "name": "Huawei Y7 Prime", "amount": 17, "description": "So it is cheap, but is it good?.", "price": 800, "avatar": "https://image.ceneostatic.pl/data/products/64920815/i-huawei-y7-prime-2018-dual-sim-niebieski.jpg"},
+    { "name": "Sony Xperia XZ2", "amount": 11, "description": "Rotation?", "price": 2400, "avatar": "https://image.ceneostatic.pl/data/products/68646553/i-sony-xperia-xz2-premium-czarny.jpg"},
+    { "name": "Samsung Galaxy s8", "amount": 10, "description": "Smartphone for everyone.", "price": 3000, "avatar": "https://www.jbhifi.com.au/FileLibrary/ProductResources/Images/210671-L-LO.jpg"}
+]
