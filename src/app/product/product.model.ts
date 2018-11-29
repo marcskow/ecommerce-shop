@@ -1,3 +1,8 @@
 export class Product {
-    constructor(private name: string, private amount: number, private description: string, private price: number, private avatar: string) {}
+    constructor(
+        readonly name: string,
+        readonly amount: number,
+        readonly description: string,
+        readonly price: number,
+        readonly avatar: string) {}
 }

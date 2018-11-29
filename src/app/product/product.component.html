@@ -1,9 +1,22 @@
-<div class="card" style="width: 90%; height: 34rem;">
+<div class="card" style="width: 90%; height: 34rem; display:table;">
   <img class="card-img-top" style="height: 16rem; padding: 25px;" src="{{product.avatar}}" alt="Card image cap">
   <div class="card-body">
     <span class="card-title"><h5>{{ product.name }}</h5><h3>{{ product.price | currency: 'EUR' }}</h3></span>
     <p class="card-text">{{ product.description }}</p>
     <p>Warehouse: {{ product.amount }}</p>
-    <a href="#" class="btn btn-primary">Details</a>
+    <a href="#" class="btn btn-primary" style="margin-bottom: 10px;">Details</a>
+    <br/>
+    <span *ngIf="product.amount > 0; else notAvailableBlock">
+      <button class="btn" type="button" (click)="descreaseOrder()">
+        <span class="fa fa-minus"></span>
+      </button>
+      <input readonly type="number" style="margin-right: 10px; margin-left: 10px; max-width: 40px; text-align: center;" [ngModel]="inBasket">
+      <button *ngIf="product.amount > inBasket" class="btn" type="button" (click)="increaseOrder()">
+        <span class="fa fa-plus"></span>
+      </button>
+    </span>
+    <ng-template #notAvailableBlock>
+      Product not available.
+    </ng-template>
   </div>
 </div>
