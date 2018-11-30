@@ -4,6 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { AdminComponent } from './admin/admin.component';
 import { BasketComponent } from './basket/basket.component';
 import { AuthGuard } from './auth.guard';
+import { AboutUsComponent } from './about.us/about.us.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,11 @@ const routes: Routes = [
   {
     path: 'basket',
     component: BasketComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'about',
+    component: AboutUsComponent,
     canActivate: [AuthGuard]
   }
 ];

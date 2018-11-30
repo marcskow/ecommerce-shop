@@ -1,24 +1,18 @@
 <nav class="navbar navbar-dark navbar-expand-md fixed-top">
-  <a href="#" class="navbar-brand abs">ZPW</a>
+  <a routerLink="" class="navbar-brand abs">ZPW</a>
   <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav">
       <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="nav navbar-nav ml-auto" id="navScrollspy">
-        <li class="navbar-left">
-            <a class="nav-link" href="#top">Do góry</a>
+        <li class="navbar-left" [hidden]="!isAdmin()">
+            <a class="nav-link" routerLink="admin">Admin</a>
         </li>
         <li class="navbar-left">
-            <a class="nav-link" href="#description">O nas</a>
+            <a class="nav-link" routerLink="">Home</a>
         </li>
         <li class="navbar-left">
-            <a class="nav-link" href="#">Portfolio</a>
-        </li>
-        <li class="navbar-left">
-            <a class="nav-link" href="#">Usługi</a>
-        </li>
-        <li class="navbar-left">
-            <a class="nav-link" href="#">Ceny</a>
+            <a class="nav-link" routerLink="about">About Us</a>
         </li>
         <nav class="navbar-right">
           <button class="btn btn-success" type="button"  style="margin-left: 20px;">

@@ -3,9 +3,8 @@
 
     <div style="margin-bottom: 70px;"></div>
 
-    <app-admin *ngIf="admin; else common"></app-admin>
-    <ng-template #common>
-        <app-products></app-products>
-    </ng-template>
-  
+    <div id="content">
+        <router-outlet></router-outlet>
+    </div>
 </div>
+        

@@ -12,4 +12,12 @@ export class ProductsRepository {
       new Product("Sony Xperia XZ2", 11, "Rotation?", 2400, "https://image.ceneostatic.pl/data/products/68646553/i-sony-xperia-xz2-premium-czarny.jpg"),
       new Product("Samsung Galaxy s8", 10, "Smartphone for everyone.", 3000, "https://www.jbhifi.com.au/FileLibrary/ProductResources/Images/210671-L-LO.jpg")
     ]
+
+    addProduct(product: Product) {
+      this.products.push(product)
+    }
+
+    removeProduct(productName: string) {
+      this.products = this.products.filter(it => it.name != productName)
+    }
 }

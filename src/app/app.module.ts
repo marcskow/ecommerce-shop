@@ -12,6 +12,8 @@ import { AdminProductsComponent } from './admin/products/admin.products.componen
 import { HomeComponent } from './home/home.component';
 import { BasketComponent } from './basket/basket.component';
 import { NavComponent } from './nav/nav.component';
+import { AppRoutingModule } from './app-routing.module';
+import { AboutUsComponent } from './about.us/about.us.component';
 
 @NgModule({
   declarations: [
@@ -23,9 +25,11 @@ import { NavComponent } from './nav/nav.component';
     AdminProductsComponent,
     HomeComponent,
     BasketComponent,
-    NavComponent
+    NavComponent,
+    AboutUsComponent
   ],
   imports: [
+    AppRoutingModule,
     BrowserModule,
     FormsModule
   ],
