@@ -9,6 +9,9 @@ import { ProductService } from './service/product.service';
 import { AdminComponent } from './admin/admin.component';
 import { AdminProductComponent } from './admin/product/admin.product.component';
 import { AdminProductsComponent } from './admin/products/admin.products.component';
+import { HomeComponent } from './home/home.component';
+import { BasketComponent } from './basket/basket.component';
+import { NavComponent } from './nav/nav.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +20,10 @@ import { AdminProductsComponent } from './admin/products/admin.products.componen
     ProductsComponent,
     AdminComponent,
     AdminProductComponent,
-    AdminProductsComponent
+    AdminProductsComponent,
+    HomeComponent,
+    BasketComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,
