@@ -28,7 +28,7 @@ export class AdminProductsComponent implements OnInit {
 
   showMore() {
     var response = this.productService.getProducts(this.currentPage, DEFAULT_PAGE_SIZE);
-    this.products.concat(response.payload);
+    this.products = this.products.concat(response.payload);
     this.total = response.total;
     this.currentPage++;
     this.endOfData();

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { BasketItem } from './product.model';
 import { Product } from '../product/product.model';
+import { BasketItem } from './basket.item.model';
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +29,14 @@ export class BasketService {
     if (!this.basket.has(productName)) {
       return 0;
     }
-    return this.basket[productName].amount
+    return this.basket[productName].amount;
+  }
+
+  getBasket() {
+    var result: BasketItem[] = []
+    for (var value of this.basket.values()) {
+      result.push(value);
+    }
+    return result;
   }
 }

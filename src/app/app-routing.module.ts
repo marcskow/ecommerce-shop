@@ -18,13 +18,11 @@ const routes: Routes = [
   },
   {
     path: 'basket',
-    component: BasketComponent,
-    canActivate: [AuthGuard]
+    component: BasketComponent
   },
   {
     path: 'about',
-    component: AboutUsComponent,
-    canActivate: [AuthGuard]
+    component: AboutUsComponent
   }
 ];
 

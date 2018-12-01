@@ -14,6 +14,7 @@ import { BasketComponent } from './basket/basket.component';
 import { NavComponent } from './nav/nav.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AboutUsComponent } from './about.us/about.us.component';
+import { FactoryComponent } from './admin/factory/factory.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { AboutUsComponent } from './about.us/about.us.component';
     HomeComponent,
     BasketComponent,
     NavComponent,
-    AboutUsComponent
+    AboutUsComponent,
+    FactoryComponent
   ],
   imports: [
     AppRoutingModule,
