@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { BasketService } from '../../service/basket.service';
 import { Product } from 'src/app/product/product.model';
 
@@ -9,6 +9,7 @@ import { Product } from 'src/app/product/product.model';
 export class AdminProductComponent implements OnInit {
 
   @Input() product : Product;
+  @Output() removeProduct = new EventEmitter<Product>();
   inBasket : number = 0;
 
   constructor(private basketService: BasketService) {
@@ -30,4 +31,7 @@ export class AdminProductComponent implements OnInit {
     }
   }
 
+  onRemove() {
+    this.removeProduct.emit(this.product);
+  }
 }

@@ -2,7 +2,7 @@
 
 <div class="container">
 <div *ngFor="let item of products">
-    <app-admin-product [product]="item"></app-admin-product>
+    <app-admin-product [product]="item" (removeProduct)="removeProduct($event)"></app-admin-product>
 </div>
   <button *ngIf="show" class="btn" (click)="showMore()">View More</button>
 </div>
