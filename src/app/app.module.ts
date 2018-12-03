@@ -15,10 +15,6 @@ import { NavComponent } from './nav/nav.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AboutUsComponent } from './about.us/about.us.component';
 import { FactoryComponent } from './admin/factory/factory.component';
-import { AngularFireModule } from '@angular/fire';
-import { AngularFireAuthModule } from '@angular/fire/auth';
-import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -35,12 +31,9 @@ import { environment } from 'src/environments/environment';
     FactoryComponent
   ],
   imports: [
-    AngularFireModule.initializeApp(environment.firebaseConfig),
     AppRoutingModule,
     BrowserModule,
-    FormsModule,
-    AngularFireAuthModule,
-    AngularFirestoreModule
+    FormsModule
   ],
   providers: [ProductService],
   bootstrap: [AppComponent]

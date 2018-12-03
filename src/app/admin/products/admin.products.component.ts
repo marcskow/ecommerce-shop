@@ -37,8 +37,4 @@ export class AdminProductsComponent implements OnInit {
   endOfData() {
     this.show = (this.total > this.currentPage * DEFAULT_PAGE_SIZE);
   }
-
-  removeProduct(product: Product) {
-    this.products = this.products.filter(item => item !== product);
-  }
 }

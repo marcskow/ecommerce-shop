@@ -1,31 +1,27 @@
 import { Injectable } from '@angular/core';
 import { ProductsRepository } from './product.repository';
 import { Product } from '../product/product.model';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
 
-  products: Observable<Product[]>
+  productsReposistory = new ProductsRepository
 
-  constructor(private productsRepository: ProductsRepository) { }
+  constructor() { }
 
   getProducts(page: number, size: number) {
-    this.products = this.productsRepository.getProducts();
-
-    var total = this.productsRepository.products.length
-    var payload = this.productsRepository.products.slice(page * size, page * size + size)
-    this.productsRepository.getProducts()
+    var total = this.productsReposistory.products.length
+    var payload = this.productsReposistory.products.slice(page * size, page * size + size)
     return { payload, total }
   }
 
   addProduct(product: Product) {
-    this.productsRepository.addProduct(product)
+    this.productsReposistory.addProduct(product)
   }
 
   removeProduct(name: string) {
-    this.productsRepository.removeProduct(name)
+    this.productsReposistory.removeProduct(name)
   }
 }
