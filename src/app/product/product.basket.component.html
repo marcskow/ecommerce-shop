@@ -1,0 +1,12 @@
+<span *ngIf="product.amount > 0; else notAvailableBlock">
+  <button class="btn" type="button" (click)="descreaseOrder()">
+    <span class="fa fa-minus"></span>
+  </button>
+  <input readonly type="number" style="margin-right: 10px; margin-left: 10px; max-width: 40px; text-align: center;" [ngModel]="inBasket">
+  <button *ngIf="product.amount > inBasket" class="btn" type="button" (click)="increaseOrder()">
+    <span class="fa fa-plus"></span>
+  </button>
+</span>
+<ng-template #notAvailableBlock>
+    Product not available.
+</ng-template>

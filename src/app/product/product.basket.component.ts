@@ -3,10 +3,10 @@ import { Product } from './product.model';
 import { BasketService } from '../service/basket.service';
 
 @Component({
-  selector: 'app-product',
-  templateUrl: './product.component.html'
+  selector: 'app-product-basket',
+  templateUrl: './product.basket.component.html'
 })
-export class ProductComponent implements OnInit {
+export class ProductBasketComponent implements OnInit {
 
   @Input() product : Product;
   inBasket : number = 0;
