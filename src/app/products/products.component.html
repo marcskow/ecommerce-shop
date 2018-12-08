@@ -1,23 +1,20 @@
 <h1>Products</h1>
+<ngb-pagination [(total)]="total" [(page)]="page" [boundaryLinks]="true"></ngb-pagination>
 
-<div class="row top-buffer" *ngFor="let row of products">
-<div class="col-md">
-    <app-product *ngIf="row?.length > 0" [product]="row[0]"></app-product>
-</div>
-<div class="col-md">
-    <app-product *ngIf="row?.length > 1" [product]="row[1]"></app-product>
-</div>
-<div class="col-md">
-    <app-product *ngIf="row?.length > 2" [product]="row[2]"></app-product>
-</div>
-<div class="col-md">
-    <app-product *ngIf="row?.length > 3" [product]="row[3]"></app-product>
-</div>
-</div>
-<button *ngIf="show" class="btn" (click)="showMore()">View More</button>
-
-<!-- <div class="row top-buffer" *ngFor="let productsRow of products">
-    <div class="col-md" *ngFor="let product of productsRow">
-        <app-product [product]="product"></app-product>
-    </div>
-</div> -->
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Handle</th>
+            <th scope="col">Handle</th>
+            <th scope="col">Handle</th>
+            <th scope="col">Handle</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let product of products">
+            <app-product [product]="product"></app-product>
+        </tr>
+    </tbody>
+</table>

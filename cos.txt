@@ -1,0 +1,116 @@
+CREATE (A0:Building {name:"A0", functions:"service"})
+CREATE (A1:Building {name:"A1", functions:"teaching"})
+CREATE (A2:Building {name:"A2", functions:"teaching"})
+CREATE (HA1:Building {name:"HA1", functions:"service"})
+CREATE (HA2:Building {name:"HA2", functions:"service"})
+CREATE (C1:Building {name:"C1", functions:"teaching"})
+CREATE (C2:Building {name:"C2", functions:"teaching"})
+CREATE (C3:Building {name:"C3", functions:"teaching"})
+CREATE (U1:Building {name:"U1", functions:"service"})
+CREATE (C5:Building {name:"C5", functions:"teaching"})
+CREATE (C6:Building {name:"C6", functions:"teaching"})
+CREATE (C4:Building {name:"C4", functions:"teaching"})
+CREATE (A4:Building {name:"A4", functions:"teaching"})
+CREATE (D1:Building {name:"D1", functions:"teaching"})
+CREATE (U2:Building {name:"U2", functions:"teaching"})
+CREATE (A3:Building {name:"A3", functions:"teaching"})
+CREATE (S1:Building {name:"S1", functions:"service"})
+CREATE (B1:Building {name:"B1", functions:"teaching"})
+CREATE (B2:Building {name:"B2", functions:"teaching"})
+CREATE (B3:Building {name:"B3", functions:"teaching"})
+CREATE (B4:Building {name:"B4", functions:"teaching"})
+CREATE (HB1B2:Building {name:"HB1B2", functions:"teaching"})
+CREATE (HB3B4:Building {name:"HB3B4", functions:"teaching"})
+CREATE (S2:Building {name:"S2", functions:"service"})
+CREATE (U3:Building {name:"U3", functions:"service"})
+CREATE (D4:Building {name:"D4", functions:"teaching"})
+CREATE (Z2:Building {name:"Z2", functions:"teaching"})
+CREATE (B5:Building {name:"B5", functions:"teaching"})
+CREATE (HB6:Building {name:"HB6", functions:"teaching"})
+CREATE (B6:Building {name:"B6", functions:"teaching"})
+CREATE (B8:Building {name:"B8", functions:"teaching"})
+CREATE (D6:Building {name:"D6", functions:"teaching"})
+CREATE (D5:Building {name:"D5", functions:"teaching"})
+CREATE (B7:Building {name:"B7 ", functions:"teaching"})
+
+MATCH (n{name: "A0"}),(m{name:"A1"}) create ((n)-[:PASS{floor:1}]->(m));
+MATCH (n{name: "A1"}),(m{name:"A2"}) create ((n)-[:PASS{floor:1}]->(m));
+MATCH (n{name: "A1"}),(m{name:"HA1"}) create ((n)-[:PASS{floor:0}]->(m));
+MATCH (n{name: "A1"}),(m{name:"HA1"}) create ((n)-[:PASS{floor:1}]->(m));
+MATCH (n{name: "HA1"}),(m{name:"A1"}) create ((n)-[:PASS{floor:0}]->(m));
+MATCH (n{name: "HA1"}),(m{name:"A1"}) create ((n)-[:PASS{floor:1}]->(m));
+MATCH (n{name: "A2"}),(m{name:"HA2"}) create ((n)-[:PASS{floor:0}]->(m));
+MATCH (n{name: "A2"}),(m{name:"HA2"}) create ((n)-[:PASS{floor:1}]->(m));
+MATCH (n{name: "HA2"}),(m{name:"A2"}) create ((n)-[:PASS{floor:0}]->(m));
+MATCH (n{name: "HA2"}),(m{name:"A2"}) create ((n)-[:PASS{floor:1}]->(m));
+MATCH (n{name: "HA1"}),(m{name:"HA2"}) create ((n)-[:PASS{floor:1}]->(m));
+MATCH (n{name: "HA2"}),(m{name:"HA1"}) create ((n)-[:PASS{floor:1}]->(m));
+MATCH (n{name: "HA1"}),(m{name:"HA2"}) create ((n)-[:PASS{floor:0}]->(m));
+MATCH (n{name: "HA2"}),(m{name:"HA1"}) create ((n)-[:PASS{floor:0}]->(m));
+MATCH (n{name: "A2"}),(m{name:"A1"}) create ((n)-[:PASS{floor:1}]->(m));
+MATCH (n{name: "A1"}),(m{name:"A2"}) create ((n)-[:PASS{floor:1}]->(m));
+MATCH (n{name: "A1"}),(m{name:"C1"}) create ((n)-[:PASS{floor:1}]->(m));
+MATCH (n{name: "C1"}),(m{name:"A1"}) create ((n)-[:PASS{floor:1}]->(m));
+MATCH (n{name: "C1"}),(m{name:"C2"}) create ((n)-[:PASS{floor:0}]->(m));
+MATCH (n{name: "C1"}),(m{name:"C2"}) create ((n)-[:PASS{floor:1}]->(m));
+MATCH (n{name: "C1"}),(m{name:"C2"}) create ((n)-[:PASS{floor:2}]->(m));
+MATCH (n{name: "C2"}),(m{name:"C1"}) create ((n)-[:PASS{floor:0}]->(m));
+MATCH (n{name: "C2"}),(m{name:"C1"}) create ((n)-[:PASS{floor:1}]->(m));
+MATCH (n{name: "C2"}),(m{name:"C1"}) create ((n)-[:PASS{floor:2}]->(m));
+MATCH (n{name: "C3"}),(m{name:"C2"}) create ((n)-[:PASS{floor:0}]->(m));
+MATCH (n{name: "C3"}),(m{name:"C2"}) create ((n)-[:PASS{floor:1}]->(m));
+MATCH (n{name: "C3"}),(m{name:"C2"}) create ((n)-[:PASS{floor:2}]->(m));
+MATCH (n{name: "C2"}),(m{name:"C3"}) create ((n)-[:PASS{floor:0}]->(m));
+MATCH (n{name: "C2"}),(m{name:"C3"}) create ((n)-[:PASS{floor:1}]->(m));
+MATCH (n{name: "C2"}),(m{name:"C3"}) create ((n)-[:PASS{floor:2}]->(m));
+MATCH (n{name: "C5"}),(m{name:"C6"}) create ((n)-[:PASS{floor:2}]->(m));
+MATCH (n{name: "C6"}),(m{name:"C5"}) create ((n)-[:PASS{floor:2}]->(m));
+MATCH (n{name: "C6"}),(m{name:"C4"}) create ((n)-[:PASS{floor:0}]->(m));
+MATCH (n{name: "C6"}),(m{name:"C4"}) create ((n)-[:PASS{floor:1}]->(m));
+MATCH (n{name: "C6"}),(m{name:"C4"}) create ((n)-[:PASS{floor:2}]->(m));
+MATCH (n{name: "C4"}),(m{name:"C6"}) create ((n)-[:PASS{floor:0}]->(m));
+MATCH (n{name: "C4"}),(m{name:"C6"}) create ((n)-[:PASS{floor:1}]->(m));
+MATCH (n{name: "C4"}),(m{name:"C6"}) create ((n)-[:PASS{floor:2}]->(m));
+MATCH (n{name: "C4"}),(m{name:"A4"}) create ((n)-[:PASS{floor:1}]->(m));
+MATCH (n{name: "A4"}),(m{name:"C4"}) create ((n)-[:PASS{floor:1}]->(m));
+MATCH (n{name: "A4"}),(m{name:"D1"}) create ((n)-[:PASS{floor:0}]->(m));
+MATCH (n{name: "A4"}),(m{name:"D1"}) create ((n)-[:PASS{floor:1}]->(m));
+MATCH (n{name: "D1"}),(m{name:"A4"}) create ((n)-[:PASS{floor:0}]->(m));
+MATCH (n{name: "D1"}),(m{name:"A4"}) create ((n)-[:PASS{floor:1}]->(m));
+MATCH (n{name: "U2"}),(m{name:"D1"}) create ((n)-[:PASS{floor:0}]->(m));
+MATCH (n{name: "U2"}),(m{name:"D1"}) create ((n)-[:PASS{floor:1}]->(m));
+MATCH (n{name: "D1"}),(m{name:"U2"}) create ((n)-[:PASS{floor:0}]->(m));
+MATCH (n{name: "D1"}),(m{name:"U2"}) create ((n)-[:PASS{floor:1}]->(m));
+MATCH (n{name: "U2"}),(m{name:"A3"}) create ((n)-[:PASS{floor:0}]->(m));
+MATCH (n{name: "U2"}),(m{name:"A3"}) create ((n)-[:PASS{floor:1}]->(m));
+MATCH (n{name: "A3"}),(m{name:"U2"}) create ((n)-[:PASS{floor:0}]->(m));
+MATCH (n{name: "A3"}),(m{name:"U2"}) create ((n)-[:PASS{floor:1}]->(m));
+MATCH (n{name: "A4"}),(m{name:"A3"}) create ((n)-[:PASS{floor:0}]->(m));
+MATCH (n{name: "A4"}),(m{name:"A3"}) create ((n)-[:PASS{floor:1}]->(m));
+MATCH (n{name: "A3"}),(m{name:"A4"}) create ((n)-[:PASS{floor:0}]->(m));
+MATCH (n{name: "A3"}),(m{name:"A4"}) create ((n)-[:PASS{floor:1}]->(m));
+MATCH (n{name: "B1"}),(m{name:"B2"}) create ((n)-[:PASS{floor:0}]->(m));
+MATCH (n{name: "B2"}),(m{name:"B1"}) create ((n)-[:PASS{floor:0}]->(m));
+MATCH (n{name: "B3"}),(m{name:"B2"}) create ((n)-[:PASS{floor:0}]->(m));
+MATCH (n{name: "B2"}),(m{name:"B3"}) create ((n)-[:PASS{floor:0}]->(m));
+MATCH (n{name: "B3"}),(m{name:"B4"}) create ((n)-[:PASS{floor:0}]->(m));
+MATCH (n{name: "B4"}),(m{name:"B3"}) create ((n)-[:PASS{floor:0}]->(m));
+MATCH (n{name: "B4"}),(m{name:"HB3B4"}) create ((n)-[:PASS{floor:0}]->(m));
+MATCH (n{name: "HB3B4"}),(m{name:"B4"}) create ((n)-[:PASS{floor:0}]->(m));
+MATCH (n{name: "B4"}),(m{name:"HB3B4"}) create ((n)-[:PASS{floor:1}]->(m));
+MATCH (n{name: "HB3B4"}),(m{name:"B4"}) create ((n)-[:PASS{floor:1}]->(m));
+MATCH (n{name: "B1"}),(m{name:"HB1B2"}) create ((n)-[:PASS{floor:0}]->(m));
+MATCH (n{name: "HB1B2"}),(m{name:"B1"}) create ((n)-[:PASS{floor:0}]->(m));
+MATCH (n{name: "B2"}),(m{name:"HB1B2"}) create ((n)-[:PASS{floor:1}]->(m));
+MATCH (n{name: "HB1B2"}),(m{name:"B2"}) create ((n)-[:PASS{floor:1}]->(m));
+MATCH (n{name: "B6"}),(m{name:"BH6"}) create ((n)-[:PASS{floor:0}]->(m));
+MATCH (n{name: "BH6"}),(m{name:"B6"}) create ((n)-[:PASS{floor:0}]->(m));
+MATCH (n{name: "B6"}),(m{name:"BH6"}) create ((n)-[:PASS{floor:1}]->(m));
+MATCH (n{name: "BH6"}),(m{name:"B6"}) create ((n)-[:PASS{floor:1}]->(m));
+MATCH (n{name: "B6"}),(m{name:"B5"}) create ((n)-[:PASS{floor:0}]->(m));
+MATCH (n{name: "B5"}),(m{name:"B6"}) create ((n)-[:PASS{floor:0}]->(m));
+
+MATCH (n) WHERE name(n)=A0 DETACH DELETE n;
+
+MATCH (a:Building) Where not (a)-[:connected]->() Return (a)
+MATCH (a:building) return count(a);

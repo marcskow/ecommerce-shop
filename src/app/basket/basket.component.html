@@ -1,3 +1,10 @@
-<p>
-  basket works!
-</p>
+<h1>Basket</h1>
+ <ul>
+  <li *ngFor="let item of basket">
+    <ul>
+      <li>{{ item.name }}</li>
+      <li>{{ item.amount }}</li>
+      <li>{{ item.price }}</li>
+    </ul>
+  </li>
+</ul> 

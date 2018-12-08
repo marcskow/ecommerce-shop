@@ -11,8 +11,10 @@ const DEFAULT_PAGE_SIZE = 4;
 })
 export class ProductsComponent implements OnInit {
 
-  currentPage = 1;
-  products: Product[][] = [];
+  perPage = 5;
+  page = 1;
+  all: Product[] = [];
+  products: Product[] = [];
   total: Number = 0;
 
   show = true;
@@ -20,21 +22,12 @@ export class ProductsComponent implements OnInit {
   constructor(private productService: ProductService) {}
 
   ngOnInit() {
-    var response = this.productService.getProducts(0, DEFAULT_PAGE_SIZE);
-    this.products.push(response.payload);
-    this.total = response.total;
-    this.endOfData();
-  }
-
-  showMore() {
-    var response = this.productService.getProducts(this.currentPage, DEFAULT_PAGE_SIZE);
-    this.products.push(response.payload);
-    this.total = response.total;
-    this.currentPage++;
-    this.endOfData();
-  }
-
-  endOfData() {
-    this.show = (this.total > this.currentPage * DEFAULT_PAGE_SIZE);
+    this.productService
+      .getProducts()
+      .subscribe((data: Product[]) => {
+        this.all = data;
+        this.total = data.length;
+      });
+    this.products = this.all.slice((this.page - 1) * this.perPage, this.page * this.perPage)
   }
 }

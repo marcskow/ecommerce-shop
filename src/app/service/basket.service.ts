@@ -13,15 +13,15 @@ export class BasketService {
 
   addToBasket(product: Product) {
     if (this.basket.has(product.name)) {
-      this.basket[product.name].amount++;
+      this.basket.set(product.name, new BasketItem(product.name, this.basket.get(product.name).amount + 1, product.price))
     } else {
-      this.basket[product.name] = new BasketItem(product.name, 1, product.price)
+      this.basket.set(product.name, new BasketItem(product.name, 1, product.price))
     }
   }
 
   removeFromBasket(product: Product) {
     if (this.basket.has(product.name)) {
-      this.basket[product.name].amount--;
+      this.basket.get(product.name).amount--;
     }
   }
 
@@ -29,14 +29,22 @@ export class BasketService {
     if (!this.basket.has(productName)) {
       return 0;
     }
-    return this.basket[productName].amount;
+    return this.basket.get(productName).amount;
   }
 
   getBasket() {
     var result: BasketItem[] = []
-    for (var value of this.basket.values()) {
-      result.push(value);
-    }
+    this.basket.forEach((value, key, map) => result.push(value))    
     return result;
+  }
+
+  getBasketSize() {
+    var itemsSum = 0;
+    var priceSum = 0;
+    this.basket.forEach((value, key, map) => {
+      priceSum += (value.price * value.amount);
+      itemsSum += value.amount;
+    })
+    return {itemsSum, priceSum}
   }
 }
