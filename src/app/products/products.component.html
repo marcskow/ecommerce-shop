@@ -1,17 +1,26 @@
-<h1>Products</h1>
-<!-- <ngb-pagination [(collectionSize)]="total" [(page)]="page" [boundaryLinks]="true" (pageChange)="onPageChange($event)"></ngb-pagination>
+<div class="input-group mb-3">
+    <div class="input-group-prepend">
+        <button class="btn btn-outline-secondary" type="button" (click)="searchBy(search.value)">Search</button>
+    </div>
+    <input #search type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1" (keyup.enter)="searchBy(search.value)">
+</div>
 
-<table mdbTable class="z-depth-1">
-    <thead>
+<table class="table">
+    <thead class="thead-light">
         <tr>      
-            <th *ngFor="let head of headers; let i = index" width="head.width" scope="col" [mdbTableSort]="all" [sortBy]="headers[i].name">
-                {{head.name}}<mdb-icon icon="sort"></mdb-icon>
+            <th *ngFor="let head of headers; let i = index" width="head.width" scope="col" (click)="changeOrder(i)">
+                {{head.name}} <span [ngClass]="{
+                    'fa': true,
+                    'fa-sort-up': head.sortable && head.order === 'asc',
+                    'fa-sort-down': head.sortable && head.order === 'desc',
+                    'fa-sort': head.sortable && head.order === 'none'
+                }" style="margin-left: 10px"></span>
             </th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let product of getPage()">
-                <td width="10%"><img style="height: 150px; width: 150px" src="{{product.avatar}}" alt="Card image cap"></td>
+                <td width="10%"><img style="height: 120px; width: 120px" src="{{product.avatar}}" alt="Card image cap"></td>
                 <td width="15%">
                     <app-product-specification [product]="product"></app-product-specification>
                 </td>
@@ -23,56 +32,5 @@
                 <td width="10%">{{ product.amount }}</td>
         </tr>
     </tbody>
-</table> -->
-
-<!-- { name: 'Avatar', width: '10%' },
-{ name: 'Model', width: '15%' },
-{ name: 'Order', width: '15%' },
-{ name: 'Price', width: '10%' },
-{ name: 'Description', width: '40%' },
-{ name: 'Max', width: '10%' }]; -->
-<table class="table table-striped" [mfData]="all" #mf="mfDataTable" [mfRowsOnPage]="5">
-        <thead>
-        <tr>
-            <th style="width: 10%">
-                <mfDefaultSorter by="avatar">Avatar</mfDefaultSorter>
-            </th>
-            <th style="width: 15%">
-                <mfDefaultSorter by="name">Model</mfDefaultSorter>
-            </th>
-            <th style="width: 15%">
-                <mfDefaultSorter by="name">Order</mfDefaultSorter>
-            </th>
-            <th style="width: 10%">
-                <mfDefaultSorter by="price">Price</mfDefaultSorter>
-            </th>
-            <th style="width: 40%">
-                <mfDefaultSorter by="description">Description</mfDefaultSorter>
-            </th>
-            <th style="width: 10%">
-                <mfDefaultSorter by="amount">Max</mfDefaultSorter>
-            </th>
-        </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let product of getPage()">
-                    <td width="10%"><img style="height: 150px; width: 150px" src="{{product.avatar}}" alt="Card image cap"></td>
-                    <td width="15%">
-                        <app-product-specification [product]="product"></app-product-specification>
-                    </td>
-                    <td width="15%">
-                        <app-product-basket [product]="product"></app-product-basket>
-                    </td>
-                    <td width="10%">{{ product.price | currency: 'EUR' }}</td>
-                    <td width="40%">{{ product.description }}</td>
-                    <td width="10%">{{ product.amount }}</td>
-            </tr>
-        </tbody>
-        <tfoot>
-        <tr>
-            <td colspan="4">
-                <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
-            </td>
-        </tr>
-        </tfoot>
-    </table>
+</table>
+<ngb-pagination [(collectionSize)]="total" [(page)]="page" [boundaryLinks]="true" (pageChange)="onPageChange($event)"></ngb-pagination>

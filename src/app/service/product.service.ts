@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Product } from '../product/product.model';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +11,13 @@ export class ProductService {
 
   constructor(private http: HttpClient) { }
 
-  getProducts() {
-    return this.http.get(`${this.uri}/products`);
+  getProducts(term: string) {
+    if (term == '') {
+      return this.http.get(`${this.uri}/products`);
+    } else {
+      let params = new HttpParams().set('term', term);
+      return this.http.get(`${this.uri}/products`, { params: params });
+    }
   }
 
   getProductById(id: string) {
