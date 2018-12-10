@@ -1,0 +1,28 @@
+{
+  "name": "ecommerce-server",
+  "version": "1.0.0",
+  "description": "Ecommerce Server",
+  "main": "server.js",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "test": "ng test",
+    "lint": "ng lint",
+    "e2e": "ng e2e",
+    "dev": "babel-watch server.js"
+  },
+  "author": "Marcin Skowron",
+  "private": true,
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-watch": "^2.0.7"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "mongoose": "^5.3.14",
+    "serve-static": "^1.13.2"
+  }
+}
