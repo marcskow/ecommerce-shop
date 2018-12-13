@@ -11,12 +11,12 @@ export class FactoryComponent implements OnInit {
 
   constructor(private productService: ProductService) { }
 
-  model = new Product("", 0, "", 0, "")
+  model = new Product("", 0, "", 0, "", "", 0, false, "", false, 0, 0)
 
   ngOnInit() {
   } 
 
   onSubmit() {
-    this.productService.addProduct(this.model)
+    this.productService.addProduct(this.model);
   }
 }

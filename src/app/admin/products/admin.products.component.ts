@@ -1,8 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { ProductService } from '../../service/product.service';
-import { Product } from 'src/app/product/product.model';
-
-const DEFAULT_PAGE_SIZE = 4;
+import {Component, OnInit} from '@angular/core';
+import {ProductService} from '../../service/product.service';
+import {Product} from 'src/app/product/product.model';
 
 @Component({
   selector: 'app-admin-products',
@@ -11,31 +9,35 @@ const DEFAULT_PAGE_SIZE = 4;
 })
 export class AdminProductsComponent implements OnInit {
 
+  all: Product[] = [];
   currentPage = 1;
   products: Product[] = [];
   total: Number = 0;
 
   show = true;
 
-  constructor(private productService: ProductService) {}
+  constructor(private productService: ProductService) {
+  }
 
   ngOnInit() {
-    var response = this.productService.getProducts(0, DEFAULT_PAGE_SIZE);
-    this.products = this.products.concat(response.payload);
-    this.total = response.total;
-    this.endOfData();
+    this.productService
+      .getProductsInit()
+      .subscribe((data: Product[]) => {
+        this.all = data;
+        this.total = data.length;
+        this.products = this.all.slice(0, 5);
+        this.endOfData();
+      });
   }
 
   showMore() {
-    var response = this.productService.getProducts(this.currentPage, DEFAULT_PAGE_SIZE);
-    this.products = this.products.concat(response.payload);
-    this.total = response.total;
+    this.products = this.all.slice(0, 5 * this.currentPage);
     this.currentPage++;
     this.endOfData();
   }
 
   endOfData() {
-    this.show = (this.total > this.currentPage * DEFAULT_PAGE_SIZE);
+    this.show = (this.total > this.currentPage * 5);
   }
 
   removeProduct(product: Product) {
