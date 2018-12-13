@@ -5,6 +5,7 @@ import { AdminComponent } from './admin/admin.component';
 import { BasketComponent } from './basket/basket.component';
 import { AuthGuard } from './auth.guard';
 import { AboutUsComponent } from './about.us/about.us.component';
+import {LoginComponent} from './login/login.component';
 
 const routes: Routes = [
   {
@@ -13,7 +14,7 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    component: HomeComponent
+    component: LoginComponent
   },
   {
     path: 'admin',

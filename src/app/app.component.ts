@@ -9,13 +9,9 @@ import { User } from './service/user/user.model';
 })
 export class AppComponent  implements OnInit {
   title = 'ecommerce';
-  currentUser : User;
-  admin : Boolean;
 
   constructor(private userService: UserService) {}
 
   ngOnInit() {
-    this.currentUser = this.userService.getCurrentUser()
-    this.admin = this.currentUser.role === "admin"
   }
 }

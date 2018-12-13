@@ -1,14 +1,19 @@
-import { Injectable } from '@angular/core';
-import { User } from './user/user.model';
+import {Injectable} from '@angular/core';
+import {AuthService} from '../auth/auth.service';
+import {AngularFirestore} from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  constructor() { }
+  constructor(private authService: AuthService, private db: AngularFirestore) {
+  }
 
   getCurrentUser() {
-    return new User("Marcin", "Skowron", "admin")
+    const currentUserEmail = this.authService.user.email;
+    return this.db
+      .collection<{ email: string, role: string }>('/users', ref => ref.where('email', '==', currentUserEmail))
+      .valueChanges();
   }
 }

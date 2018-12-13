@@ -19,9 +19,9 @@ export class AuthService {
     }
     
     login({email, password}: Credentials) {
-            return this.fireAuth.auth.setPersistence(firebase.auth.Auth.Persistence.SESSION).then(() => {
-               return this.fireAuth.auth.signInWithEmailAndPassword(email, password);
-            });
+        return this.fireAuth.auth.setPersistence(firebase.auth.Auth.Persistence.SESSION).then(() => {
+           return this.fireAuth.auth.signInWithEmailAndPassword(email, password);
+        });
     }
     
     register({email, password}: Credentials) {

@@ -21,6 +21,10 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { LoginComponent } from './login/login.component';
+import { OrderComponent } from './order/order.component';
+import { OrdersComponent } from './orders/orders.component';
+import { OrderDetailsComponent} from './orders/details/order.details.component';
 
 @NgModule({
   declarations: [
