@@ -9,11 +9,16 @@ import { BasketItem } from '../service/basket.item.model';
 })
 export class BasketComponent implements OnInit {
 
-  basket: BasketItem[] = []
+  basket: BasketItem[] = [];
+  totalItems: number;
+  totalPrice: number;
 
   constructor(private basketService: BasketService) { }
 
   ngOnInit() {
     this.basket = this.basketService.getBasket();
+    const basketSize = this.basketService.getBasketSize();
+    this.totalPrice = basketSize.priceSum;
+    this.totalItems = basketSize.itemsSum;
   }
 }

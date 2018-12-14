@@ -44,7 +44,7 @@ export class BasketService {
     this.basket.forEach((value, key, map) => {
       priceSum += (value.price * value.amount);
       itemsSum += value.amount;
-    })
+    });
     return {itemsSum, priceSum}
   }
 }

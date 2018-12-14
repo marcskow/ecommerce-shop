@@ -38,7 +38,11 @@ import { OrderDetailsComponent} from './orders/details/order.details.component';
     BasketComponent,
     NavComponent,
     AboutUsComponent,
-    FactoryComponent
+    FactoryComponent,
+    LoginComponent,
+    OrderComponent,
+    OrdersComponent,
+    OrderDetailsComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebaseConfig),
