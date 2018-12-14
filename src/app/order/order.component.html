@@ -1,0 +1,33 @@
+<h2>Add new product</h2>
+<form (ngSubmit)="onSubmit()" #orderForm="ngForm">
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="inputName">Name</label>
+      <input type="text" class="form-control" id="inputName" placeholder="Name"
+             [(ngModel)]="order.name" name="name" #name="ngModel" required>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-12">
+      <label for="inputAddress">Address</label>
+      <input type="text" class="form-control" id="inputAddress" placeholder="Address"
+             [(ngModel)]="order.address" name="address" #address="ngModel" required>
+    </div>
+  </div>
+  <div class="form-row">
+    <div ngbDropdown class="d-inline-block">
+      <button class="btn btn-outline-primary" id="inputShippingType" ngbDropdownToggle>{{ selectedShippingType.name }}</button>
+      <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+        <button class="dropdown-item" *ngFor="let shippingType of shippingTypes" (click)="changeShippingType(shippingType)">{{shippingType}}</button>
+      </div>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-12">
+      <label for="inputMessage">Message</label>
+      <textarea class="form-control rounded-0" id="inputMessage" rows="3"
+                [(ngModel)]="order.message" name="message" #message="ngModel"></textarea>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary" [disabled]="!orderForm.form.valid">Finalize</button>
+</form>

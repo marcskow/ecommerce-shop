@@ -1,0 +1,34 @@
+<div *ngIf="order">
+  <div class="row">
+    <div class="col-sm">
+      Id: {{order.id}}
+    </div>
+    <div class="col-sm">
+      Address: {{order.address}}
+    </div>
+    <div class="col-sm">
+      Total price: {{order.totalPrice}}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm">
+      Name: {{order.name}}
+    </div>
+    <div class="col-sm">
+      Shipping type: {{order.shippingType}}
+    </div>
+    <div class="col-sm">
+      Shipping price: {{order.shippingPrice}}
+    </div>
+  </div>
+  <div class="row">
+    <p>
+      {{order.message}}
+    </p>
+  </div>
+  <ul>
+    <li *ngFor="let product of order.products">
+      {{product.name}}, {{product.amount}}, {{product.price}}, Total: {{product.price * product.amount}}
+    </li>
+  </ul>
+</div>
