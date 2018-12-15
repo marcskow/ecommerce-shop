@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from '../product/product.model';
 import { ProductService } from '../service/product.service';
 import { Filter } from './filter.model';
+import { FilterForm } from './filter.form';
 
 const DEFAULT_PAGE_SIZE = 4;
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
-  styleUrls: ['./products.component.css']
+  styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent implements OnInit {
 
@@ -20,6 +21,8 @@ export class ProductsComponent implements OnInit {
   total: number = 0;
   searchText: string = "";
   filters: Filter[] = [];
+  defaultSort: (a: Product, b: Product) => number = (a, b) => (a.name > b.name) ? 1 : -1
+  currentSort: (a: Product, b: Product) => number = this.defaultSort
 
   headers = [
       { name: 'Avatar', width: '10%', sortable: false, order: 'none' },
@@ -29,18 +32,58 @@ export class ProductsComponent implements OnInit {
       { name: 'Description', width: '40%', sortable: true, order: 'none' },
       { name: 'Max', width: '10%', sortable: false, order: 'none' }];
 
+  providers: FilterForm[] = []
+  memories: FilterForm[] = []
+  rams: FilterForm[] = []
+  oses: FilterForm[] = []
+
+  dualsim: boolean = false
+  externalMemory: boolean = false
+
   show = true;
 
   constructor(private productService: ProductService) {}
 
   ngOnInit() {
     this.productService
-      .getProducts('')
+      .getProducts('', this.filters)
+      .subscribe((data: Product[]) => {
+        this.all = data;
+        this.all.forEach(product => {
+          if (this.providers.find(p => p.value === product.provider) == null) {
+            this.providers.push(new FilterForm("provider", product.provider, false));
+          }
+          if (this.memories.find(p => p.value === "" + product.memory) == null) {
+            this.memories.push(new FilterForm("memory", "" + product.memory, false));
+          }
+          if (this.rams.find(p => p.value === "" + product.ram) == null) {
+            this.rams.push(new FilterForm("ram", "" + product.ram, false));
+          }
+          if (this.oses.find(p => p.value === product.os) == null) {
+            this.oses.push(new FilterForm("os", product.os, false));
+          }
+        });
+        
+        this.total = data.length;
+        this.products = this.all
+          .sort(this.currentSort)
+          .slice((this.page - 1) * this.perPage, this.page * this.perPage);
+      });
+  }
+
+  checkAll(providerCheck: FilterForm) {
+    if (providerCheck.checked) {
+      this.filters.push(new Filter(providerCheck.type, 'eq', providerCheck.value));
+    } else {
+      this.filters = this.filters.filter(check => !((check.attribute == providerCheck.type) && (check.value == providerCheck.value)));
+    }
+    this.productService
+      .getProducts(this.searchText, this.filters)
       .subscribe((data: Product[]) => {
         this.all = data;
         this.total = data.length;
         this.products = this.all
-          .sort((a, b) => (a.name > b.name) ? 1 : -1)
+          .sort(this.currentSort)
           .slice((this.page - 1) * this.perPage, this.page * this.perPage)
       });
   }
@@ -64,12 +107,12 @@ export class ProductsComponent implements OnInit {
   searchBy(text: string) {
     this.searchText = text;
     this.productService
-      .getProducts(text)
+      .getProducts(text, this.filters)
       .subscribe((data: Product[]) => {
         this.all = data;
         this.total = data.length;
         this.products = this.all
-          .sort((a, b) => (a.name > b.name) ? 1 : -1)
+          .sort(this.currentSort)
           .slice((this.page - 1) * this.perPage, this.page * this.perPage)
       });
   }
@@ -91,27 +134,28 @@ export class ProductsComponent implements OnInit {
   sort(name: string, order: string) {
     if (name === 'Model') {
       if (order === 'desc') {
-        this.all.sort((a, b) => (a.name < b.name) ? 1 : -1);
+        this.currentSort = (a, b) => (a.name < b.name) ? 1 : -1 
       } else {
-        this.all.sort((a, b) => (a.name > b.name) ? 1 : -1);
+        this.currentSort = (a, b) => (a.name > b.name) ? 1 : -1 
       }
     } else if (name === 'Price') {
       if (order === 'desc') {
-        this.all.sort((a, b) => (a.price < b.price) ? 1 : -1);
+        this.currentSort = (a, b) => (a.price < b.price) ? 1 : -1;
       } else if (order === 'asc') {
-        this.all.sort((a, b) => (a.price > b.price) ? 1 : -1);
+        this.currentSort = (a, b) => (a.price > b.price) ? 1 : -1;
       } else {
-        this.all.sort((a, b) => (a.name < b.name) ? 1 : -1);
+        this.currentSort = this.defaultSort;
       }
     } else if (name === 'Description') {
       if (order === 'desc') {
-        this.all.sort((a, b) => (a.description < b.description) ? 1 : -1);
+        this.currentSort = (a, b) => (a.description < b.description) ? 1 : -1;
       } else if (order === 'asc') {
-        this.all.sort((a, b) => (a.description > b.description) ? 1 : -1);
+        this.currentSort = (a, b) => (a.description > b.description) ? 1 : -1;
       } else {
-        this.all.sort((a, b) => (a.name < b.name) ? 1 : -1);
+        this.currentSort = this.defaultSort;
       }
     }
+    this.all.sort(this.currentSort);
     this.products = this.all.slice((this.page - 1) * this.perPage, this.page * this.perPage)
   }
 }

@@ -4,7 +4,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { ProductComponent } from './product/product.component';
+import { ProductBasketComponent } from './product/product.basket.component';
+import { ProductSpecificationComponent } from './product/product.specification.component';
 import { ProductsComponent } from './products/products.component';
 import { ProductService } from './service/product.service';
 import { AdminComponent } from './admin/admin.component';
@@ -29,7 +30,8 @@ import { OrderDetailsComponent} from './orders/details/order.details.component';
 @NgModule({
   declarations: [
     AppComponent,
-    ProductComponent,
+    ProductBasketComponent,
+    ProductSpecificationComponent,
     ProductsComponent,
     AdminComponent,
     AdminProductComponent,
