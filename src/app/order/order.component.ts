@@ -20,6 +20,13 @@ export class OrderComponent implements OnInit {
   totalItems: number;
   totalPrice: number;
 
+  sortOrders: string[] = ["Year", "Title", "Author"];
+  selectedSortOrder: string = "Sort by...";
+
+  ChangeSortOrder(newSortOrder: string) {
+    this.selectedSortOrder = newSortOrder;
+  }
+
   constructor(private basketService: BasketService, private orderService: OrderService) {
   }
 
@@ -43,5 +50,4 @@ export class OrderComponent implements OnInit {
     this.order.realized = false;
     this.orderService.addOrder(this.order);
   }
-
 }

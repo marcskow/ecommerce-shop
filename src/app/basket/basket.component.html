@@ -9,7 +9,12 @@
   </li>
 </ul>
 
-Total items: {{ totalItems }}
-Total price: {{ totalPrice }}
+<p>
+  Total items: {{ totalItems }}<br/>
+</p>
 
-<button class="btn btn-primary" (click)="order()">Order now</button>
+<p>
+  Total price: {{ totalPrice }}<br/>
+</p>
+
+<button [hidden]="totalPrice <= 0" class="btn btn-primary" (click)="order()">Order now</button>

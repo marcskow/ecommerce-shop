@@ -11,6 +11,7 @@ export class UserService {
   }
 
   getCurrentUser() {
+    if (this.authService.user == null) { return null; }
     const currentUserEmail = this.authService.user.email;
     return this.db
       .collection<{ email: string, role: string }>('/users', ref => ref.where('email', '==', currentUserEmail))

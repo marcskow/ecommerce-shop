@@ -26,6 +26,7 @@ import { LoginComponent } from './login/login.component';
 import { OrderComponent } from './order/order.component';
 import { OrdersComponent } from './orders/orders.component';
 import { OrderDetailsComponent} from './orders/details/order.details.component';
+import { UUID } from 'angular2-uuid';
 
 @NgModule({
   declarations: [
@@ -48,13 +49,13 @@ import { OrderDetailsComponent} from './orders/details/order.details.component';
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebaseConfig),
+    NgbModule.forRoot(),
     AppRoutingModule,
     BrowserModule,
     FormsModule,
     AngularFireAuthModule,
     AngularFirestoreModule,
-    HttpClientModule,
-    NgbModule
+    HttpClientModule
   ],
   providers: [ProductService],
   bootstrap: [AppComponent]

@@ -22,7 +22,12 @@ export class NavComponent implements OnInit {
   ngOnInit() {
     this.basketItems = this.basketService.getBasketSize().itemsSum;
     this.basketSum = this.basketService.getBasketSize().priceSum;
-    this.userService.getCurrentUser().subscribe(it => this.isAdminField = (it[0].role === 'admin'));
+    const userObservable = this.userService.getCurrentUser();
+    if (userObservable == null) {
+      this.isAdminField = false;
+    } else {
+      this.userService.getCurrentUser().subscribe(it => this.isAdminField = (it[0].role === 'admin'));
+    }
   }
 
   isAdmin() {

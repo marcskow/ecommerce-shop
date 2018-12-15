@@ -6,6 +6,8 @@ import { BasketComponent } from './basket/basket.component';
 import { AuthGuard } from './auth.guard';
 import { AboutUsComponent } from './about.us/about.us.component';
 import {LoginComponent} from './login/login.component';
+import {OrdersComponent} from './orders/orders.component';
+import {OrderComponent} from './order/order.component';
 
 const routes: Routes = [
   {
@@ -15,6 +17,14 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path: 'orders',
+    component: OrdersComponent
+  },
+  {
+    path: 'order',
+    component: OrderComponent
   },
   {
     path: 'admin',
