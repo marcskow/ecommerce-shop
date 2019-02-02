@@ -2,9 +2,9 @@
 <form (ngSubmit)="onSubmit()" #productForm="ngForm">
     <div class="form-row">
         <div class="form-group col-md-6">
-            <label for="inputTitle">Title</label>
-            <input type="text" class="form-control" id="inputTitle" placeholder="Title"
-                   [(ngModel)]="model.title" name="title" #name="ngModel" required>
+            <label for="inputName">Title</label>
+            <input type="text" class="form-control" id="inputName" placeholder="Name"
+                   [(ngModel)]="model.name" name="name" #name="ngModel" required>
             <!-- <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
               Title is required
             </div> -->

@@ -11,6 +11,10 @@ export class BasketService {
 
   constructor() { }
 
+  clearBasket() {
+    this.basket = new Map();
+  }
+
   addToBasket(product: Product) {
     if (this.basket.has(product.name)) {
       this.basket.set(product.name, new BasketItem(product.name, this.basket.get(product.name).amount + 1, product.price))

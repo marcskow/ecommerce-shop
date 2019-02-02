@@ -118,7 +118,7 @@ export class ProductsComponent implements OnInit {
   }
 
   changeOrder(index: number) {
-    this.headers.forEach(header => header.order = 'none');
+    this.headers.filter(header => header.name !== this.headers[index].name).forEach(header => header.order = 'none');
 
     var currentOrder = this.headers[index].order;
     if (currentOrder === 'none')
@@ -134,9 +134,11 @@ export class ProductsComponent implements OnInit {
   sort(name: string, order: string) {
     if (name === 'Model') {
       if (order === 'desc') {
-        this.currentSort = (a, b) => (a.name < b.name) ? 1 : -1 
+        this.currentSort = (a, b) => (a.name < b.name) ? 1 : -1;
+      } else if (order === 'asc') {
+        this.currentSort = (a, b) => (a.name > b.name) ? 1 : -1;
       } else {
-        this.currentSort = (a, b) => (a.name > b.name) ? 1 : -1 
+        this.currentSort = this.defaultSort;
       }
     } else if (name === 'Price') {
       if (order === 'desc') {

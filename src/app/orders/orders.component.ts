@@ -9,7 +9,7 @@ import {Order} from '../order/order.model';
 })
 export class OrdersComponent implements OnInit {
 
-  realized = false;
+  realized = 'ordered';
   orders: Order[];
   selectedOrder: Order;
 
@@ -23,10 +23,41 @@ export class OrdersComponent implements OnInit {
   }
 
   realize(i) {
-    this.orderService.markOrderAsRealized(this.orders[i].id);
+    this.orderService.changeOrderRealizationState(this.orders[i].id, 'realized')
+      .subscribe((id: string) => {
+        this.orders = this.orders.filter(obj => obj.id !== this.orders[i].id);
+      }, (error: any) => {
+        console.log(error);
+      });
+  }
+
+  archive(i) {
+    this.orderService.changeOrderRealizationState(this.orders[i].id, 'archived')
+      .subscribe((id: string) => {
+        this.orders = this.orders.filter(obj => obj.id !== this.orders[i].id);
+      }, (error: any) => {
+        console.log(error);
+      });
+  }
+
+  removeOrder(i) {
+    this.orderService.deleteOrder(this.orders[i].id)
+      .subscribe((id: string) => {
+        this.orders = this.orders.filter(obj => obj.id !== this.orders[i].id);
+      }, (error: any) => {
+        console.log(error);
+      });
   }
 
   details(i) {
     this.selectedOrder = this.orders[i];
+  }
+
+  changeData(realized) {
+    this.realized = realized;
+    this.orderService.getOrders(this.realized)
+      .subscribe((response: Order[]) => {
+        this.orders = response;
+      });
   }
 }

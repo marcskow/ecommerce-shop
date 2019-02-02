@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { ProductService } from 'src/app/service/product.service';
-import { Product } from 'src/app/product/product.model';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Product} from 'src/app/product/product.model';
 
 @Component({
   selector: 'app-factory',
@@ -9,14 +8,17 @@ import { Product } from 'src/app/product/product.model';
 })
 export class FactoryComponent implements OnInit {
 
-  constructor(private productService: ProductService) { }
+  @Output() addProduct = new EventEmitter<Product>();
 
-  model = new Product("", 0, "", 0, "", "", 0, false, "", false, 0, 0)
+  constructor() {
+  }
+
+  model = new Product('', 0, '', 0, '', '', 0, false, '', false, 0, 0);
 
   ngOnInit() {
-  } 
+  }
 
   onSubmit() {
-    this.productService.addProduct(this.model);
+    this.addProduct.emit(this.model);
   }
 }

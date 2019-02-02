@@ -3,6 +3,7 @@ import {Order, ShippingType} from './order.model';
 import {OrderService} from '../service/order.service';
 import {BasketService} from '../service/basket.service';
 import {BasketItem} from '../service/basket.item.model';
+import {Route, Router} from '@angular/router';
 
 @Component({
   selector: 'app-order',
@@ -14,20 +15,22 @@ export class OrderComponent implements OnInit {
     new ShippingType('InPost', 12),
     new ShippingType('DHL', 24),
     new ShippingType('Pocztex24', 15)];
-  order: Order;
+  order = new Order();
   selectedShippingType = new ShippingType('Shipping Type', 0);
   basket: BasketItem[] = [];
   totalItems: number;
   totalPrice: number;
 
-  sortOrders: string[] = ["Year", "Title", "Author"];
-  selectedSortOrder: string = "Sort by...";
+  sortOrders: string[] = ['Year', 'Title', 'Author'];
+  selectedSortOrder: string = 'Sort by...';
 
   ChangeSortOrder(newSortOrder: string) {
     this.selectedSortOrder = newSortOrder;
   }
 
-  constructor(private basketService: BasketService, private orderService: OrderService) {
+  constructor(private basketService: BasketService,
+              private orderService: OrderService,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -47,7 +50,11 @@ export class OrderComponent implements OnInit {
     this.order.totalPrice = this.totalPrice + this.selectedShippingType.price;
     this.order.shippingType = this.selectedShippingType.name;
     this.order.shippingPrice = this.selectedShippingType.price;
-    this.order.realized = false;
-    this.orderService.addOrder(this.order);
+    this.order.realized = 'ordered';
+    this.orderService.addOrder(this.order)
+      .subscribe((data) => {
+        this.basketService.clearBasket();
+        this.router.navigate(['/home']);
+      }, (error) => console.log(error));
   }
 }

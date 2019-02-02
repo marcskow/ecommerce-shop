@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AboutUsComponent implements OnInit {
 
+  kraje = [{ country: "Polska", population: "38mln"}, { country: "Niemcy", population: "64mln"}]
+
   constructor() { }
 
   ngOnInit() {

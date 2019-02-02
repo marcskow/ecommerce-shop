@@ -8,10 +8,16 @@ import { AboutUsComponent } from './about.us/about.us.component';
 import {LoginComponent} from './login/login.component';
 import {OrdersComponent} from './orders/orders.component';
 import {OrderComponent} from './order/order.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {EmployeeAuthGuard} from './employee.auth.guard';
 
 const routes: Routes = [
   {
     path: '',
+    component: HomeComponent
+  },
+  {
+    path: 'home',
     component: HomeComponent
   },
   {
@@ -20,7 +26,8 @@ const routes: Routes = [
   },
   {
     path: 'orders',
-    component: OrdersComponent
+    component: OrdersComponent,
+    canActivate: [EmployeeAuthGuard]
   },
   {
     path: 'order',
@@ -42,7 +49,8 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

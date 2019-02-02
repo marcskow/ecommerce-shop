@@ -1,10 +1,23 @@
 <nav class="navbar navbar-dark navbar-expand-md fixed-top">
-  <a routerLink="" class="navbar-brand abs">ZPW</a>
+  <a routerLink="" class="navbar-brand abs">
+    <img id="app-logo" src="./assets/img/micon.png" width="30" height="30" alt="" style="margin-bottom: 3px;">
+    ZPW
+  </a>
   <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav">
       <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="nav navbar-nav ml-auto" id="navScrollspy">
+        <li class="navbar-left" [hidden]="!(isEmployeeField || isAdminField)">
+          <nav class="navbar-right">
+            <button class="btn btn-danger" type="button" style="margin-left: 20px;" (click)="logout()">
+              Logout
+            </button>
+          </nav>
+        </li>
+        <li class="navbar-left" [hidden]="!isEmployeeField">
+          <a class="nav-link" routerLink="orders">Employee</a>
+        </li>
         <li class="navbar-left" [hidden]="!isAdminField">
             <a class="nav-link" routerLink="admin">Admin</a>
         </li>

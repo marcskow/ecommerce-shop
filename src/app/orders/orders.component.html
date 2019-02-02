@@ -1,3 +1,17 @@
+<table>
+  <tbody>
+    <tr>
+      <td>
+        <span>
+          <button style="margin: 10px;" class="btn" [ngClass]="{'btn-primary' : realized === 'ordered', 'btn-secondary' : realized !== 'ordered'}" (click)="changeData('ordered')">Ordered</button>
+          <button style="margin: 10px;" class="btn" [ngClass]="{'btn-primary' : realized === 'realized', 'btn-secondary' : realized !== 'realized'}" (click)="changeData('realized')">Realized</button>
+          <button style="margin: 10px;" class="btn" [ngClass]="{'btn-primary' : realized === 'archived', 'btn-secondary' : realized !== 'archived'}" (click)="changeData('archived')">Archived</button>
+        </span>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
 <table class="table">
   <thead class="thead-light">
     <tr>
@@ -6,22 +20,30 @@
     </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let item of orders; let i = index">
+  <tr>
     <td width="50%">
-      <div class="card">
-        <div class="card-header">
-          {{ item.name }}
-        </div>
-        <div class="card-body">
-          <p class="card-text">{{ item.shippingType }}</p>
-          <p class="card-text">{{ item.address }}</p>
-          <p class="card-text">{{ item.message }}</p>
-          <span>
-            <button *ngIf="!realized" class="btn btn-primary" (click)="realize(i)">Realize</button>
-            <button class="btn btn-success" (click)="details()">Details</button>
-          </span>
-        </div>
-      </div>
+      <table class="table">
+        <tr *ngFor="let item of orders; let i = index">
+          <td>
+            <div class="card">
+              <div class="card-header">
+                {{ item.name }}
+              </div>
+              <div class="card-body">
+                <p class="card-text">{{ item.shippingType }}</p>
+                <p class="card-text">{{ item.address }}</p>
+                <p class="card-text">{{ item.message }}</p>
+                <span>
+                  <button [hidden]="realized !== 'ordered'" class="btn btn-success" (click)="realize(i)">Realize</button>
+                  <button [hidden]="realized !== 'realized'" class="btn btn-success" (click)="archive(i)">Archive</button>
+                  <button class="btn btn-primary" (click)="details(i)">Details</button>
+                  <button [hidden]="realized !== 'archived'" class="btn btn-danger" (click)="removeOrder(i)">Remove</button>
+                </span>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </table>
     </td>
     <td width="50%">
       <app-order-details [order]="selectedOrder"></app-order-details>

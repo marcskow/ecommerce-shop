@@ -11,8 +11,8 @@ export class OrderService {
 
   constructor(private http: HttpClient) { }
 
-  getOrders(realized: boolean) {
-      let params = new HttpParams().set('realized', JSON.stringify(realized));
+  getOrders(realized: string) {
+      const params = new HttpParams().set('realized', realized);
       return this.http.get(`${this.uri}/orders`, { params: params });
   }
 
@@ -20,7 +20,11 @@ export class OrderService {
     return this.http.post(`${this.uri}/orders`, order);
   }
 
-  markOrderAsRealized(id: string) {
-    return this.http.post(`${this.uri}/order/realized/${id}`, '');
+  changeOrderRealizationState(id: string, state: string) {
+    return this.http.post(`${this.uri}/orders/realized/change`, { id: id, realized: state });
+  }
+
+  deleteOrder(id: string) {
+    return this.http.get(`${this.uri}/orders/delete/${id}`);
   }
 }

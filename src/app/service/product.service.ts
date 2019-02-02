@@ -17,13 +17,13 @@ export class ProductService {
   }
 
   getProducts(term: string, filters: Filter[]) {
-    if (term == '' && filters.length == 0) {
+    if (term === '' && filters.length === 0) {
       return this.http.get(`${this.uri}/products`);
-    } else if (term == '') {
-      let params = new HttpParams().set('filters', JSON.stringify(filters));
+    } else if (term === '') {
+      const params = new HttpParams().set('filters', JSON.stringify(filters));
       return this.http.get(`${this.uri}/products`, { params: params });
     } else {
-      let params = new HttpParams().set('term', term);
+      const params = new HttpParams().set('term', term);
       params.set('filters', JSON.stringify(filters));
       return this.http.get(`${this.uri}/products`, { params: params });
     }

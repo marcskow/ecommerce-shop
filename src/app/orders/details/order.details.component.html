@@ -26,9 +26,11 @@
       {{order.message}}
     </p>
   </div>
-  <ul>
-    <li *ngFor="let product of order.products">
-      {{product.name}}, {{product.amount}}, {{product.price}}, Total: {{product.price * product.amount}}
-    </li>
-  </ul>
+  <div class="row">
+    <ul>
+      <li *ngFor="let product of order.products">
+        {{product.name}}, {{product.amount}}, {{product.price}}, Total: {{product.price * product.amount}}
+      </li>
+    </ul>
+  </div>
 </div>
